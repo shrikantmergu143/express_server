@@ -4,24 +4,35 @@ const cors = require("cors");
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 const authRoutes = require("./routes/authRoutes");
 const mongoose = require('mongoose');
+const socketServer = require('./socketServer')
 require('dotenv').config();
 
 const  LogRocket = require('logrocket');
 LogRocket.init('g4jqmy/express_server');
 
 const PORT = process.env.PORT || process.env.API_PORT;
-
+const HOSTNAME = '0.0.0.0'
 const app = express();
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+  methods: ['GET', 'POST', 'PUT'],
+  origin:"*",
+};
+app.use(cors(corsOptions));
 
 //Register
 app.use("/api/auth", authRoutes);
 
-const server = http.createServer(app);
+const server = http.createServer(app, (req, res)=>{
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  res.write('Hello, world!');
+  res.end();
+});
+socketServer.registerSocketServer(server);
+
 mongoose.set('strictQuery', false);
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }).then(() => {
-    server.listen(PORT, ()=>{
+    server.listen(PORT, HOSTNAME, ()=>{
         console.log("Serverport", PORT);
     });
 })
