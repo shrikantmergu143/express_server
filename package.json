@@ -18,7 +18,6 @@
     "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
     "logrocket": "^4.0.0",
-    "mongodb": "^5.2.0",
     "mongoose": "^6.0.10",
     "nodemon": "^2.0.13",
     "socket.io": "^4.4.1",
