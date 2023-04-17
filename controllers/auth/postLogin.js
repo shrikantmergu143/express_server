@@ -18,7 +18,7 @@ const postLogin = async (req, res)=>{
                 },
                 process.env.TOKEN_KEY,
                 {
-                    expiresIn:"24h"
+                    expiresIn:"365d"
                 }
             );
             return res.status(200).json({

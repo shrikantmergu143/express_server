@@ -25,7 +25,6 @@ app.use("/api/auth", authRoutes);
 
 const server = http.createServer(app, (req, res)=>{
   res.writeHead(200, { 'Content-Type': 'application/json' });
-  res.write('Hello, world!');
   res.end();
 });
 socketServer.registerSocketServer(server);
