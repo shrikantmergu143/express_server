@@ -35,8 +35,7 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }).then(() => {
     server.listen(PORT, HOSTNAME, ()=>{
         console.log("Serverport", PORT);
     });
-})
-  .catch(error => console.error(error));
+}).catch(error => console.error(error));
 
 // // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 // const client = new MongoClient(process.env.MONGO_URL, {
