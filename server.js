@@ -36,6 +36,8 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }).then(() => {
     });
 }).catch(error => console.error(error));
 
+module.exports = app;
+
 // // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 // const client = new MongoClient(process.env.MONGO_URL, {
 //     serverApi: {
