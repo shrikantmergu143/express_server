@@ -1,5 +1,6 @@
 const express = require("express");
 const http = require("http");
+const { v4 } = require('uuid');
 const cors = require("cors");
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 const authRoutes = require("./routes/authRoutes");
@@ -20,6 +21,12 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+app.get('/api', (req, res) => {
+  const path = `/api/item/${v4()}`;
+  res.setHeader('Content-Type', 'text/html');
+  res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
+  res.end(`Hello! Go to item: <a href="${path}">${path}</a>`);
+});
 //Register
 app.use("/api/auth", authRoutes);
 
